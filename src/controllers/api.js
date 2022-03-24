@@ -16,6 +16,7 @@ const MAX_HEX = 32;
 const getFilesData = async (req, res) => {
   try {
     const { fileName } = req.query;
+    console.log(fileName);
     //Se realiza la busqueda de los archivos
     let rsqFiles = await getSecretInfo({ url: "secret/files" });
     let files = rsqFiles.files;
@@ -71,13 +72,25 @@ const getFilesData = async (req, res) => {
                     accepted: true,
                   });
                 } else {
-                  filesFormated.push({ file: file_name, accepted: false });
+                  filesFormated.push({
+                    file: file_name,
+                    lines: [],
+                    accepted: false,
+                  });
                 }
               } else {
-                filesFormated.push({ file: file_name, accepted: false });
+                filesFormated.push({
+                  file: file_name,
+                  lines: [],
+                  accepted: false,
+                });
               }
             } else {
-              filesFormated.push({ file: file_name, accepted: false });
+              filesFormated.push({
+                file: file_name,
+                lines: [],
+                accepted: false,
+              });
             }
           });
 
